@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How It Works | MailGuard AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <a href="{{ url_for('dashboard') }}" class="logo">
+            <span class="logo-icon">✦</span>
+            <span>MailGuard <strong>AI</strong></span>
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('analyze') }}">
+                Analyze
+            </a>
+
+            <a href="{{ url_for('analytics') }}">
+                Analytics
+            </a>
+
+            <a href="{{ url_for('how_it_works') }}" class="active">
+                How It Works
+            </a>
+
+        </div>
+
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            PIPELINE ACTIVE
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<main class="how-page container">
+
+
+    <section class="page-heading">
+
+        <span class="heading-badge">
+            THE PIPELINE
+        </span>
+
+        <h1>
+            How <span class="gradient-text">MailGuard AI</span> Works
+        </h1>
+
+        <p>
+            From raw email text to a final classification, the system
+            follows a simple machine learning pipeline.
+        </p>
+
+    </section>
+
+
+
+    <!-- PIPELINE -->
+
+    <section class="pipeline">
+
+
+        <div class="pipeline-line"></div>
+
+
+        <div class="pipeline-step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <div class="step-content">
+
+                <span class="card-eyebrow">
+                    INPUT
+                </span>
+
+                <h2>
+                    Email Text
+                </h2>
+
+                <p>
+                    The user submits an email message through the
+                    MailGuard AI web interface.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="pipeline-step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <div class="step-content">
+
+                <span class="card-eyebrow">
+                    FEATURE EXTRACTION
+                </span>
+
+                <h2>
+                    TF-IDF Vectorization
+                </h2>
+
+                <p>
+                    The email text is converted into numerical features
+                    using Term Frequency-Inverse Document Frequency.
+                    The system considers unigrams and bigrams.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="pipeline-step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <div class="step-content">
+
+                <span class="card-eyebrow">
+                    CLASSIFICATION
+                </span>
+
+                <h2>
+                    Complement Naive Bayes
+                </h2>
+
+                <p>
+                    The trained Complement Naive Bayes classifier evaluates
+                    the TF-IDF features and determines the most likely class.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="pipeline-step">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <div class="step-content">
+
+                <span class="card-eyebrow">
+                    OUTPUT
+                </span>
+
+                <h2>
+                    Spam or Legitimate
+                </h2>
+
+                <p>
+                    The system displays the predicted class along with
+                    the model's probability-based score.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- TECHNOLOGY -->
+
+    <section class="technology-section">
+
+
+        <div class="section-heading">
+
+            <span class="card-eyebrow">
+                TECHNOLOGY STACK
+            </span>
+
+            <h2>
+                Built with practical ML tools
+            </h2>
+
+        </div>
+
+
+        <div class="technology-grid">
+
+
+            <div class="technology-card">
+
+                <div class="technology-icon">
+                    PY
+                </div>
+
+                <h3>
+                    Python
+                </h3>
+
+                <p>
+                    Core programming language used for data processing
+                    and machine learning.
+                </p>
+
+            </div>
+
+
+            <div class="technology-card">
+
+                <div class="technology-icon">
+                    TF
+                </div>
+
+                <h3>
+                    TF-IDF
+                </h3>
+
+                <p>
+                    Converts email text into numerical features that
+                    the classifier can process.
+                </p>
+
+            </div>
+
+
+            <div class="technology-card">
+
+                <div class="technology-icon">
+                    ML
+                </div>
+
+                <h3>
+                    Scikit-learn
+                </h3>
+
+                <p>
+                    Provides the vectorizer, classifier and evaluation
+                    tools used by the project.
+                </p>
+
+            </div>
+
+
+            <div class="technology-card">
+
+                <div class="technology-icon">
+                    FL
+                </div>
+
+                <h3>
+                    Flask
+                </h3>
+
+                <p>
+                    Connects the trained machine learning model with
+                    the web interface.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<footer class="footer container">
+
+    <div>
+        <strong>MailGuard AI</strong>
+        <span>Machine Learning Spam Detection</span>
+    </div>
+
+    <span>
+        Python · Flask · Scikit-learn
+    </span>
+
+</footer>
+
+
+</body>
+</html>

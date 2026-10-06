@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analyze | MailGuard AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <a href="{{ url_for('dashboard') }}" class="logo">
+            <span class="logo-icon">✦</span>
+            <span>MailGuard <strong>AI</strong></span>
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('analyze') }}" class="active">
+                Analyze
+            </a>
+
+            <a href="{{ url_for('analytics') }}">
+                Analytics
+            </a>
+
+            <a href="{{ url_for('how_it_works') }}">
+                How It Works
+            </a>
+
+        </div>
+
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            MODEL READY
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<main class="analyze-page container">
+
+
+    <section class="page-heading">
+
+        <span class="heading-badge">
+            EMAIL ANALYSIS
+        </span>
+
+        <h1>
+            Analyze an <span class="gradient-text">Email</span>
+        </h1>
+
+        <p>
+            Submit an email message and let the trained machine learning
+            model classify it as spam or legitimate.
+        </p>
+
+    </section>
+
+
+
+    <section class="analyzer-layout">
+
+
+        <div class="analyzer-card">
+
+
+            <div class="analytics-card-header">
+
+                <div>
+
+                    <span class="card-eyebrow">
+                        INPUT
+                    </span>
+
+                    <h2>
+                        Email Content
+                    </h2>
+
+                </div>
+
+                <span class="model-status">
+                    MODEL READY
+                </span>
+
+            </div>
+
+
+            <form method="POST" action="{{ url_for('analyze') }}">
+
+                <textarea
+                    class="email-input"
+                    name="message"
+                    placeholder="Paste the email content here..."
+                    required
+                >{{ message }}</textarea>
+
+
+                <div class="input-footer">
+
+                    <span>
+                        TF-IDF text processing
+                    </span>
+
+                    <button type="submit" class="primary-btn">
+                        Analyze Email
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            {% if error %}
+
+            <div class="error-box">
+                <strong>Analysis Error</strong>
+                <p>{{ error }}</p>
+            </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+
+        <div class="result-card">
+
+
+            <span class="card-eyebrow">
+                CLASSIFICATION RESULT
+            </span>
+
+
+            {% if prediction %}
+
+                {% if prediction == "spam" %}
+
+                <div class="result-icon spam-result">
+                    !
+                </div>
+
+                <span class="result-status danger">
+                    SPAM DETECTED
+                </span>
+
+                <h2>
+                    This message is likely spam.
+                </h2>
+
+                <p>
+                    The machine learning model detected patterns
+                    commonly associated with unwanted or spam emails.
+                </p>
+
+                {% else %}
+
+                <div class="result-icon ham-result">
+                    ✓
+                </div>
+
+                <span class="result-status safe">
+                    LEGITIMATE EMAIL
+                </span>
+
+                <h2>
+                    This message appears legitimate.
+                </h2>
+
+                <p>
+                    The model did not detect strong spam-related
+                    patterns in the submitted message.
+                </p>
+
+                {% endif %}
+
+
+                <div class="confidence-box">
+
+                    <div class="confidence-top">
+
+                        <span>
+                            MODEL SCORE
+                        </span>
+
+                        <strong>
+                            {{ confidence }}%
+                        </strong>
+
+                    </div>
+
+                    <div class="confidence-bar">
+
+                        <div
+                            class="confidence-fill"
+                            style="--confidence-width: {{ confidence }}%;"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+            {% else %}
+
+                <div class="empty-result">
+
+                    <div class="empty-icon">
+                        ◎
+                    </div>
+
+                    <h2>
+                        Awaiting Analysis
+                    </h2>
+
+                    <p>
+                        Enter an email message on the left to see
+                        the classification result here.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <section class="analysis-info">
+
+        <div class="info-card">
+
+            <span class="info-number">01</span>
+
+            <div>
+                <strong>Text Processing</strong>
+                <p>
+                    The email is transformed into numerical TF-IDF features.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="info-number">02</span>
+
+            <div>
+                <strong>Pattern Detection</strong>
+                <p>
+                    The trained Complement Naive Bayes classifier evaluates
+                    the extracted features.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <span class="info-number">03</span>
+
+            <div>
+                <strong>Prediction</strong>
+                <p>
+                    The model returns either spam or legitimate classification.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<footer class="footer container">
+
+    <div>
+        <strong>MailGuard AI</strong>
+        <span>Machine Learning Spam Detection</span>
+    </div>
+
+    <span>
+        Python · Flask · Scikit-learn
+    </span>
+
+</footer>
+
+
+</body>
+</html>

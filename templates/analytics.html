@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analytics | MailGuard AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <a href="{{ url_for('dashboard') }}" class="logo">
+            <span class="logo-icon">✦</span>
+            <span>MailGuard <strong>AI</strong></span>
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('analyze') }}">
+                Analyze
+            </a>
+
+            <a href="{{ url_for('analytics') }}" class="active">
+                Analytics
+            </a>
+
+            <a href="{{ url_for('how_it_works') }}">
+                How It Works
+            </a>
+
+        </div>
+
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            MODEL VERIFIED
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<main class="analytics-page container">
+
+
+    <section class="page-heading">
+
+        <span class="heading-badge">
+            MODEL PERFORMANCE
+        </span>
+
+        <h1>
+            System <span class="gradient-text">Analytics</span>
+        </h1>
+
+        <p>
+            Performance metrics and evaluation results from the trained
+            spam classification model.
+        </p>
+
+    </section>
+
+
+
+    <!-- METRICS -->
+
+    <section class="metric-grid">
+
+
+        <div class="metric-card">
+
+            <div class="metric-top">
+
+                <span class="metric-label">
+                    ACCURACY
+                </span>
+
+                <span class="metric-icon">
+                    ◈
+                </span>
+
+            </div>
+
+            <strong class="metric-value">
+                {{ metrics.accuracy }}%
+            </strong>
+
+            <p>
+                Overall correct predictions
+            </p>
+
+            <div class="metric-bar">
+
+                <div
+                    class="metric-fill"
+                    style="--metric-width: {{ metrics.accuracy }}%;"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="metric-card">
+
+            <div class="metric-top">
+
+                <span class="metric-label">
+                    SPAM PRECISION
+                </span>
+
+                <span class="metric-icon">
+                    ◎
+                </span>
+
+            </div>
+
+            <strong class="metric-value">
+                {{ metrics.spam_precision }}%
+            </strong>
+
+            <p>
+                Correct spam predictions
+            </p>
+
+            <div class="metric-bar">
+
+                <div
+                    class="metric-fill"
+                    style="--metric-width: {{ metrics.spam_precision }}%;"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="metric-card">
+
+            <div class="metric-top">
+
+                <span class="metric-label">
+                    SPAM RECALL
+                </span>
+
+                <span class="metric-icon">
+                    ◉
+                </span>
+
+            </div>
+
+            <strong class="metric-value">
+                {{ metrics.spam_recall }}%
+            </strong>
+
+            <p>
+                Spam messages successfully detected
+            </p>
+
+            <div class="metric-bar">
+
+                <div
+                    class="metric-fill"
+                    style="--metric-width: {{ metrics.spam_recall }}%;"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="metric-card">
+
+            <div class="metric-top">
+
+                <span class="metric-label">
+                    SPAM F1 SCORE
+                </span>
+
+                <span class="metric-icon">
+                    ◆
+                </span>
+
+            </div>
+
+            <strong class="metric-value">
+                {{ metrics.spam_f1 }}%
+            </strong>
+
+            <p>
+                Balance of precision and recall
+            </p>
+
+            <div class="metric-bar">
+
+                <div
+                    class="metric-fill"
+                    style="--metric-width: {{ metrics.spam_f1 }}%;"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- MODEL + DATASET -->
+
+    <section class="analytics-two-column">
+
+
+        <div class="analytics-card">
+
+            <div class="analytics-card-header">
+
+                <div>
+
+                    <span class="card-eyebrow">
+                        CLASSIFICATION ENGINE
+                    </span>
+
+                    <h2>
+                        Model Configuration
+                    </h2>
+
+                </div>
+
+                <span class="model-status">
+                    TRAINED
+                </span>
+
+            </div>
+
+
+            <div class="model-details">
+
+                <div class="detail-row">
+                    <span>Algorithm</span>
+                    <strong>Complement Naive Bayes</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Feature Extraction</span>
+                    <strong>TF-IDF</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>N-Gram Range</span>
+                    <strong>1 - 2</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Training Split</span>
+                    <strong>80%</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Testing Split</span>
+                    <strong>20%</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Random State</span>
+                    <strong>42</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="analytics-card">
+
+            <div class="analytics-card-header">
+
+                <div>
+
+                    <span class="card-eyebrow">
+                        DATASET
+                    </span>
+
+                    <h2>
+                        Email Distribution
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="dataset-stat">
+
+                <span>Total Emails</span>
+
+                <strong>5,572</strong>
+
+            </div>
+
+
+            <div class="dataset-stat">
+
+                <span>Legitimate / Ham</span>
+
+                <strong>4,825</strong>
+
+            </div>
+
+
+            <div class="dataset-stat">
+
+                <span>Spam</span>
+
+                <strong>747</strong>
+
+            </div>
+
+
+            <div class="dataset-visual">
+
+                <div class="dataset-bar">
+
+                    <div class="ham-part"></div>
+                    <div class="spam-part"></div>
+
+                </div>
+
+
+                <div class="dataset-legend">
+
+                    <span>
+                        <i class="legend-ham"></i>
+                        Ham · 86.6%
+                    </span>
+
+                    <span>
+                        <i class="legend-spam"></i>
+                        Spam · 13.4%
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- CONFUSION MATRIX -->
+
+    <section class="confusion-section">
+
+
+        <div class="section-heading">
+
+            <span class="card-eyebrow">
+                EVALUATION
+            </span>
+
+            <h2>
+                Confusion Matrix
+            </h2>
+
+            <p>
+                A breakdown of how the model classified legitimate and
+                spam emails during testing.
+            </p>
+
+        </div>
+
+
+
+        <div class="confusion-layout">
+
+
+            <div class="matrix-card">
+
+                <div class="matrix-labels">
+                    PREDICTED CLASS
+                </div>
+
+
+                <div class="matrix-wrapper">
+
+                    <div class="matrix-y-label">
+                        ACTUAL CLASS
+                    </div>
+
+
+                    <div class="matrix-content">
+
+                        <div class="matrix-columns">
+
+                            <span>HAM</span>
+                            <span>SPAM</span>
+
+                        </div>
+
+
+                        <div class="matrix-row">
+
+                            <div class="matrix-cell true-positive">
+
+                                <strong>
+                                    {{ confusion_matrix.true_ham }}
+                                </strong>
+
+                                <span>
+                                    Correct Ham
+                                </span>
+
+                            </div>
+
+
+                            <div class="matrix-cell false-positive">
+
+                                <strong>
+                                    {{ confusion_matrix.false_spam }}
+                                </strong>
+
+                                <span>
+                                    False Spam
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="matrix-row">
+
+                            <div class="matrix-cell false-negative">
+
+                                <strong>
+                                    {{ confusion_matrix.false_negative }}
+                                </strong>
+
+                                <span>
+                                    Missed Spam
+                                </span>
+
+                            </div>
+
+
+                            <div class="matrix-cell true-positive">
+
+                                <strong>
+                                    {{ confusion_matrix.true_spam }}
+                                </strong>
+
+                                <span>
+                                    Correct Spam
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="evaluation-card">
+
+                <span class="card-eyebrow">
+                    WHAT IT MEANS
+                </span>
+
+                <h2>
+                    Evaluation Summary
+                </h2>
+
+
+                <div class="evaluation-item">
+
+                    <span class="evaluation-number">
+                        963
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Legitimate emails correctly identified
+                        </strong>
+
+                        <p>
+                            The model correctly classified most ham messages.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="evaluation-item">
+
+                    <span class="evaluation-number">
+                        124
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Spam emails correctly detected
+                        </strong>
+
+                        <p>
+                            These spam messages were successfully identified.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="evaluation-item">
+
+                    <span class="evaluation-number">
+                        25
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Spam emails missed
+                        </strong>
+
+                        <p>
+                            Some spam messages were classified as legitimate.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="evaluation-item">
+
+                    <span class="evaluation-number">
+                        3
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Legitimate emails flagged as spam
+                        </strong>
+
+                        <p>
+                            Only a small number of ham emails were misclassified.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <div class="analytics-note">
+
+        <div class="note-icon">
+            ⓘ
+        </div>
+
+        <div>
+
+            <strong>
+                About these metrics
+            </strong>
+
+            <p>
+                These values are based on the project's held-out test
+                dataset. The model was trained using TF-IDF features and
+                Complement Naive Bayes classification.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</main>
+
+
+
+<footer class="footer container">
+
+    <div>
+        <strong>MailGuard AI</strong>
+        <span>Machine Learning Spam Detection</span>
+    </div>
+
+    <span>
+        Python · Flask · Scikit-learn
+    </span>
+
+</footer>
+
+
+</body>
+</html>
