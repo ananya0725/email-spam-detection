@@ -142,7 +142,7 @@ Email spam/
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+Download zip file
 ```
 
 ### 2. Open the project folder
